@@ -18,6 +18,6 @@ class PostsController extends Controller
                 'posts' => $posts,
             ];
         }
-        return view('categories/{id}', $data);
+        return view('{category}', $data);
     }
 }

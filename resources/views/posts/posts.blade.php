@@ -1,7 +1,6 @@
 <ul class="list-unstyled">
     @foreach ($posts as $post)
         <li class="media mb-3">
-            <img class="mr-2 rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
             <div class="media-body">
                 <div>
                     {{ $post->user->name }} <span class="text-muted">posted at {{ $post->created_at }}</span>
