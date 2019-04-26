@@ -24,8 +24,9 @@ Route::get('logout','Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['show']]);
-    Route::get('{category}','CategoriesController@show')->name('categories.show');
-    Route::resource('{category}/microposts', 'PostsController', ['only' => ['store', 'destroy']]);
+    Route::get('{$category->name}','PostsController@index')->name('categories');
+    Route::post('{$category->name}','PostsController@store')->name('posts.store');
+    // Route::resource('{category}', 'PostsController');
 });
 //ポストカテゴリーページ
  // Route::get('categories/{id}','CategoriesController@show')->name('category.get');

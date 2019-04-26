@@ -9,12 +9,10 @@ use App\Category;
 class CategoriesController extends Controller
 {
     public function index()
-    {
+    {   
         $categories = Category::all();
         
-        return view('welcome',[
-            'categories' => $categories,
-        ]);
+        return view('welcome', ['categories' => $categories,]);
     }
     
     public function show($id)

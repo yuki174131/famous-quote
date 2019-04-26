@@ -1,3 +1,4 @@
+
 <ul class="list-unstyled">
     @foreach ($posts as $post)
         <li class="media mb-3">
@@ -6,7 +7,7 @@
                     {{ $post->user->name }} <span class="text-muted">posted at {{ $post->created_at }}</span>
                 </div>
                 <div>
-                    <p class="mb-0">{!! nl2br(e($post->name)) !!}</p>
+                    <p class="mb-0">{{ $post->name }}</p>
                 </div>   
                 <div>
                     <p class="mb-0">{!! nl2br(e($post->content)) !!}</p>
