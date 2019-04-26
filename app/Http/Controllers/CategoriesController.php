@@ -10,7 +10,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {   
-        $categories = Category::all();
+        $categories = Category::orderBy( 'updated_at', 'desc')->get();
         
         return view('welcome', ['categories' => $categories,]);
     }
