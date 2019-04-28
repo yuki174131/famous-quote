@@ -11,11 +11,13 @@ class PostsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
+            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(20);
+            $category = $posts->category();
             
             $data = [
                 'user' => $user,
                 'posts' => $posts,
+                'cotegory' => $category,
             ];
         }
         return view('categories.show', $data);
