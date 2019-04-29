@@ -16,4 +16,4 @@
         </li>
     @endforeach
 </ul>
-{{ $microposts->render('pagination::bootstrap-4') }}
+{{ $posts->render('pagination::bootstrap-4') }}

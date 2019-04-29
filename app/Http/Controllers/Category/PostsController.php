@@ -19,13 +19,13 @@ class PostsController extends Controller
             $data = [
                 'user' => $user,
                 'posts' => $posts,
-                'cotegory' => $category,
+                'category' => $category,
             ];
         }
         return view('categories.show', $data);
     }
     
-    public function store($id, Request $request)
+    public function store($id,Request $request)
     {   
         $category = Category::find($id);
         
@@ -37,7 +37,7 @@ class PostsController extends Controller
         $request->user()->posts()->create([
             'name' => $request->name,
             'content' => $request->content,
-            'cotegory' => $category,
+            'category_id' => $category->id,
         ]);
 
         return back() ;

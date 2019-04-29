@@ -6,7 +6,9 @@
 
 <ul>
     @foreach ($categories as $category)
-        <li>{{ $category->content }}</li>
+        <li>
+            <a href="{{ route('category.posts.index', [ $category->id ]) }}">{{ $category->content }}</a>
+        </li>
     @endforeach
 </ul>
 
