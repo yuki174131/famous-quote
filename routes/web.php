@@ -24,6 +24,12 @@ Route::get('logout','Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+    
+    Route::group(['prefix' => 'users/{id}'], function() {
+       Route::post('follow', 'CategoryFollowController@store')->name('categories.follow');
+       Route::delete('unfollow', 'CategoryFollowController@destroy')->name('categories.unfollow');
+    });
+    
     Route::get('category/{id}/posts','Category\PostsController@index')->name('category.posts.index'); 
     Route::post('category/{id}/posts','Category\PostsController@store')->name('category.posts.store'); 
 });

@@ -33,4 +33,44 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    
+    public function followings()
+    {
+        return $this->belongsTomany(Category::class, 'category_follow', 'user_id', 'category_id')->withTimestamps();
+    }
+    
+    public function is_following($categoryId)
+    {
+        return $this->followings()->where('category_id', $categoryId)->exists();
+    }
+    
+    public function follow($categoryId)
+    {
+        //既にフォローしているかの確認
+        $exist = $this->is_following($categoryId);
+        
+        if($exist) {
+            //既にフォローしていれば何もしない
+            return false;
+        } else {
+            //フォローしてなければする
+            $this->followings()->attach($categoryId);
+            return true;
+        }
+    }
+    
+    public function unfollow($categoryId)
+    {
+        //既にフォローしているかの確認
+        $exist = $this->is_following($categoryId);
+        
+        if($exist) {
+            //既にフォローしていれば外す
+            $this->followings()->detach($categoryId);
+            return true;
+        } else {
+            //お気に入りしてなければ何もしない
+            return false;
+        }
+    }
 }
