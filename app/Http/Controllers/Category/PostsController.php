@@ -42,4 +42,15 @@ class PostsController extends Controller
 
         return back() ;
     }
+    
+    public function destroy($id)
+    {   
+        $post = \App\Post::find($id);
+        
+        if (\Auth::id() === $post->user_id) {
+        $post->delete();
+        }
+
+        return back() ;
+    }
 }

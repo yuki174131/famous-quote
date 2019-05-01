@@ -28,9 +28,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'users/{id}'], function() {
        Route::post('follow', 'CategoryFollowController@store')->name('categories.follow');
        Route::delete('unfollow', 'CategoryFollowController@destroy')->name('categories.unfollow');
+       Route::get('followings', 'UsersController@followings')->name('users.followings');
+       Route::get('favorites', 'UsersController@favorites')->name('users,favorites');
+    });
+    
+    Route::group(['prefix' => 'posts/{id}'], function () {
+        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+        Route::delete('unfavorite','FavoritesController@destroy')->name('favorites.unfavorite');
     });
     
     Route::get('category/{id}/posts','Category\PostsController@index')->name('category.posts.index'); 
-    Route::post('category/{id}/posts','Category\PostsController@store')->name('category.posts.store'); 
+    Route::post('category/{id}/posts','Category\PostsController@store')->name('category.posts.store');
+    Route::delete('category/{id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
 });
 

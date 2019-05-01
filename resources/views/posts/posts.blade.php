@@ -12,6 +12,16 @@
                 <div>
                     <p class="mb-0">{!! nl2br(e($post->content)) !!}</p>
                 </div>
+                <div>
+                    @include('favorite.favorite_button', ['postId' => $post->id])
+                </div>
+                <div>
+                    @if (Auth::id() == $post->user_id)
+                        {!! Form::open(['route' => ['category.posts.destroy', $post->id], 'method' => 'delete']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                        {!! Form::close() !!}
+                    @endif
+                </div>
             </div>
         </li>
     @endforeach

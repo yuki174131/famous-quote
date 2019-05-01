@@ -73,4 +73,41 @@ class User extends Authenticatable
             return false;
         }
     }
+    
+    public function favorites() {
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')->withTimestamps();
+    }
+    
+    public function is_favoriting($postId)
+    {
+        return $this->favorites()->where('post_id', $postId)->exists();
+    }
+    
+    public function favorite($postId) 
+    {
+        $exist = $this->is_favoriting($postId);
+        
+        if ($exist) {
+            //既にお気に入りしていれば何もしない
+            return false;
+        } else {
+            //お気に入りしてなければする
+            $this->favorites()->attach($postId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($postId)
+    {
+        //既にお気に入りしているかの確認
+        $exist = $this->is_favoriting($postId);
+        
+        if ($exist) {
+            $this->favorites()->detach($postId);
+            return true;
+        } else {
+            //お気に入りしてなければ何もしない
+            return false;
+        }
+    }
 }
