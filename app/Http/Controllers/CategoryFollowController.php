@@ -8,13 +8,13 @@ class CategoryFollowController extends Controller
 {
     public function store(Request $request, $id)
     {
-        \Auth::category()->follow($id);
+        \Auth::user()->follow($id);
         return back();
     }
     
     public function destroy($id)
     {
-        \Auth::category()->unfollow($id);
+        \Auth::user()->unfollow($id);
         return back();
     }
 }
