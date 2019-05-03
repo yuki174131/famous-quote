@@ -17,6 +17,11 @@
                 </div>
                 <div>
                     @if (Auth::id() == $post->user_id)
+                        {!! link_to_route('category.posts.edit', '編集', ['id' => $post->id], ['class' => 'btn btn-light']) !!}
+                    @endif
+                </div>
+                <div>
+                    @if (Auth::id() == $post->user_id)
                         {!! Form::open(['route' => ['category.posts.destroy', $post->id], 'method' => 'delete']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}

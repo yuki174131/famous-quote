@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('category/{id}/posts','Category\PostsController@index')->name('category.posts.index'); 
     Route::post('category/{id}/posts','Category\PostsController@store')->name('category.posts.store');
+    Route::put('category/{id}/posts','Category\PostsController@update')->name('category.posts.update');
+    Route::get('category/{id}/posts/edit','Category\PostsController@edit')->name('category.posts.edit');
     Route::delete('category/{id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
 });
 
