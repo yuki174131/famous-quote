@@ -30,7 +30,7 @@ class UsersController extends Controller
         ];
         
         $data += $this->counts($user);
-        return view('users.follows', $data);
+        return view('categories.follow', $data);
     }
     
     public function favorites($id)

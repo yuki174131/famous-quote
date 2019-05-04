@@ -65,22 +65,26 @@ class PostsController extends Controller
         }
     }
     
-    public function update(Request $request, $id)
+    public function update($post_id, Request $request)
     {   
-        $category = Category::find($id);
+        
+        $post = Post::find($post_id);
         
         $this->validate($request,[
             'name' => 'required|max:191',
             'content' => 'required|max:191',
         ]);
         
-        $request->user()->posts()->create([
-            'name' => $request->name,
-            'content' => $request->content,
-            'category_id' => $category->id,
-        ]);
+        // ログインしているユーザー
+        $user = $request->user();
+        // ログインユーザーの指定されたIDの投稿を取得
+        $post = $user->posts()->find($post_id);
+        // フォームの値を元にpostの値を変更
+        $post->fill($request->all());
+        // 投稿を保存
+        $post->save();
 
-        return redirect('category/{id}/posts') ;
+        return redirect()->route('category.posts.index',['post' => $post]);
     }
     
 }
