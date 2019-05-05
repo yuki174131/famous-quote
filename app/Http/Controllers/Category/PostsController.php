@@ -9,13 +9,13 @@ use App\Post;
 
 class PostsController extends Controller
 {
-    public function index($id)
+    public function index($category_id)
     {
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(20);
-            $category = Category::find($id);
+            $category = Category::find($category_id);
+            $posts = $user->posts()->where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20);
             
             $data = [
                 'user' => $user,
@@ -67,10 +67,7 @@ class PostsController extends Controller
     
     public function update($post_id, Request $request)
     {   
-        
-        $post = Post::find($post_id);
-        
-        $this->validate($request,[
+        $form = $this->validate($request,[
             'name' => 'required|max:191',
             'content' => 'required|max:191',
         ]);
@@ -80,11 +77,11 @@ class PostsController extends Controller
         // ログインユーザーの指定されたIDの投稿を取得
         $post = $user->posts()->find($post_id);
         // フォームの値を元にpostの値を変更
-        $post->fill($request->all());
+        $post->fill($form);
         // 投稿を保存
         $post->save();
 
-        return redirect()->route('category.posts.index',['post' => $post]);
+        return redirect()->route('category.posts.index',['category_id' => $post->category->id]);
     }
     
 }

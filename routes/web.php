@@ -37,12 +37,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('unfavorite','FavoritesController@destroy')->name('favorites.unfavorite');
     });
     
-    Route::get('category/{id}/posts','Category\PostsController@index')->name('category.posts.index'); 
-    Route::post('category/{id}/posts','Category\PostsController@store')->name('category.posts.store');
+    Route::get('category/{category_id}/posts','Category\PostsController@index')->name('category.posts.index'); 
+    Route::post('category/{category_id}/posts','Category\PostsController@store')->name('category.posts.store');
     
-    Route::put('posts/{id}','Category\PostsController@update')->name('category.posts.update');
+    Route::put('posts/{post_id}','Category\PostsController@update')->name('category.posts.update');
     
-    Route::get('category/{id}/posts/edit','Category\PostsController@edit')->name('category.posts.edit');
-    Route::delete('category/{id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
+    Route::get('category/{category_id}/posts/edit','Category\PostsController@edit')->name('category.posts.edit');
+    Route::delete('category/{category_id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
 });
 
