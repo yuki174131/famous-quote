@@ -117,4 +117,11 @@ class User extends Authenticatable
             return false;
         }
     }
+    
+    public function user_posts()
+    {
+        $user_id = $this->id;
+        return Post::whereIn('user_id',$user_id); 
+    }
 }
+
