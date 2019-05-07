@@ -44,6 +44,7 @@ class User extends Authenticatable
         return $this->followings()->where('category_id', $categoryId)->exists();
     }
     
+    
     public function follow($categoryId)
     {
         //既にフォローしているかの確認
@@ -72,6 +73,12 @@ class User extends Authenticatable
             //お気に入りしてなければ何もしない
             return false;
         }
+    }
+    
+    public function feed_posts()
+    {
+        $follow_user_ids = $this->followings()->pluck('categories.id')->toArray();
+        return Post::whereIn('category_id',$follow_user_ids); 
     }
     
     public function favorites() {

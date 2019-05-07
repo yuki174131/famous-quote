@@ -44,5 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('category/{category_id}/posts/edit','Category\PostsController@edit')->name('category.posts.edit');
     Route::delete('category/{category_id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
+    
+    Route::get('posts','PostsController@index')->name('posts.index');
+    Route::get('posts/follow','PostsController@follow_index')->name('follow.posts.index');
 });
 
