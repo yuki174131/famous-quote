@@ -28,6 +28,6 @@ class Post extends Model
     
     public function favorite()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->belongsTo(Favorite::class);
     }
 }

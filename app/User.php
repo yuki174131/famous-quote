@@ -122,5 +122,10 @@ class User extends Authenticatable
     {
         return $this->posts(); 
     }
+    
+    public function favoriteModel()
+    {
+        return $this->belongsTo(Favorite::class);
+    }
 }
 
