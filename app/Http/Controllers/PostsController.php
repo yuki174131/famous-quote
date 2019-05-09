@@ -41,8 +41,8 @@ class PostsController extends Controller
     
     public function ranking_index()
     {   
-        $posts = orderBy('count_posts_favorites', 'desc')->paginate(20);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(20);
         
-        return view('ranking.index', $posts);
+        return view('ranking.index', ['posts' => $posts]);
     }
 }
