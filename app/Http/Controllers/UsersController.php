@@ -13,9 +13,12 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $posts = $user->user_posts()->orderBy('created_at', 'desc')->paginate(20);
+        
 
         return view('users.show', [
             'user' => $user,
+            'posts' => $posts,
         ]);
     }
     

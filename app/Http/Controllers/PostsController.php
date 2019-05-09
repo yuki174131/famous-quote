@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -11,13 +12,14 @@ class PostsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(20);
+            $posts = Post::orderBy('created_at', 'desc')->paginate(20);
             
-            $data = [
+        }
+        $data = [
                 'user' => $user,
                 'posts' => $posts,
             ];
-        }
+            
         return view('posts.index', $data);
     }
     
@@ -37,19 +39,10 @@ class PostsController extends Controller
         return view('users.follow', $data);
     }
     
-    public function user_index()
-    {
-        $data = [];
-        if (\Auth::check()) {
-            $user = \Auth::user();
-            $posts = $user->user_posts()->orderBy('created_at', 'desc')->paginate(20);
-            
-            $data = [
-                'user' => $user,
-                'posts' => $posts,
-            ];
-        }
+    public function ranking_index()
+    {   
+        $posts = orderBy('count_posts_favorites', 'desc')->paginate(20);
         
-        return view('users.posts.index', $data);
+        return view('ranking.index', $posts);
     }
 }

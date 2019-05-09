@@ -120,8 +120,7 @@ class User extends Authenticatable
     
     public function user_posts()
     {
-        $user_id = $this->id;
-        return Post::whereIn('user_id',$user_id); 
+        return $this->posts(); 
     }
 }
 

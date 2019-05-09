@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Post;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -13,12 +14,10 @@ class PostsController extends Controller
     {
         $data = [];
         if (\Auth::check()) {
-            $user = \Auth::user();
             $category = Category::find($category_id);
-            $posts = $user->posts()->where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20);
+            $posts = Post::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20);
             
             $data = [
-                'user' => $user,
                 'posts' => $posts,
                 'category' => $category,
             ];

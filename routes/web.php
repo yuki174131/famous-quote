@@ -30,7 +30,6 @@ Route::group(['middleware' => ['auth']], function () {
        Route::delete('unfollow', 'CategoryFollowController@destroy')->name('categories.unfollow');
        Route::get('followings', 'UsersController@followings')->name('users.followings');
        Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
-       Route::get('posts', 'PostsController@user_index')->name('user.posts.index');
     });
     
     Route::group(['prefix' => 'posts/{id}'], function () {
@@ -40,13 +39,15 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('category/{category_id}/posts','Category\PostsController@index')->name('category.posts.index'); 
     Route::post('category/{category_id}/posts','Category\PostsController@store')->name('category.posts.store');
-    
-    Route::put('posts/{post_id}','Category\PostsController@update')->name('category.posts.update');
-    
     Route::get('category/{category_id}/posts/edit','Category\PostsController@edit')->name('category.posts.edit');
     Route::delete('category/{category_id}/posts','Category\PostsController@destroy')->name('category.posts.destroy');
     
+    Route::put('posts/{post_id}','Category\PostsController@update')->name('category.posts.update');
+    
     Route::get('posts','PostsController@index')->name('posts.index');
     Route::get('posts/follow','PostsController@follow_index')->name('follow.posts.index');
+
+    Route::get('ranking','PostsController@ranking_index')->name('ranking.index');
+    
 });
 
