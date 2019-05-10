@@ -9,9 +9,11 @@
         </aside>
         <div class="col-sm-9">
             @include('users.navtabs', ['user' => $user])
-            @if (count($posts) > 0)
-                    @include('posts.posts', ['posts' => $posts])
-            @endif
+            <div class="tab-content">
+                    @if (count($posts) > 0)
+                        @include('posts.posts', ['posts' => $posts])
+                    @endif
+            </div>
         </div>
     </div>
 @endsection

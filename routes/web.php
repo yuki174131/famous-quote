@@ -45,9 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('posts/{post_id}','Category\PostsController@update')->name('category.posts.update');
     
     Route::get('posts','PostsController@index')->name('posts.index');
-    Route::get('posts/follow','PostsController@follow_index')->name('follow.posts.index');
+    Route::get('posts/follow','PostsController@followIndex')->name('follow.posts.index');
 
-    Route::get('ranking','PostsController@ranking_index')->name('ranking.index');
+    Route::get('ranking','PostsController@rankingIndex')->name('ranking.index');
     
 });
 

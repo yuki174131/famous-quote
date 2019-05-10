@@ -123,9 +123,9 @@ class User extends Authenticatable
         return $this->posts(); 
     }
     
-    public function favoriteModel()
+    public function favoritesModel()
     {
-        return $this->belongsTo(Favorite::class);
+        return $this->hasMany(Favorite::class);
     }
 }
 
