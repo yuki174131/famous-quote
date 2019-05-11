@@ -6,8 +6,8 @@
 
 <ul>
     @foreach ($categories as $category)
-        <li class=row>
-            <a href="{{ route('category.posts.index', [ $category->id ]) }}">{{ $category->content }} @include('category_follow.follow_button', ['category' => $category])</a>
+        <li class="row m-3">
+            <a href="{{ route('category.posts.index', [ $category->id]) }}">{{ $category->content. 'カテゴリへ' }} @include('category_follow.follow_button', ['category' => $category])</a>
         </li>
     @endforeach
 </ul>
