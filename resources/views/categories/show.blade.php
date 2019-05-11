@@ -8,7 +8,7 @@
             {!! Form::submit('投稿', ['class' => 'btn btn-primary mt-3']) !!}
         </div>
     {!! Form::close() !!}
-    
+
     @if (count($posts) > 0)
         @include('posts.posts', ['posts' => $posts])
     @endif

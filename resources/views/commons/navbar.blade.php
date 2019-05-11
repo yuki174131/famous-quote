@@ -15,7 +15,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['id' => Auth::id()]) !!}</li>
                             <li class="dropdown-item"><a href="/">カテゴリ</a></li>
-                            <li class="dropdown-item"><a href="ranking">名言ランキング</a></li>
+                            <li class="dropdown-item"><a href="/ranking">名言ランキング</a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
                         </ul>

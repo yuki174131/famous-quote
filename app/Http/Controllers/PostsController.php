@@ -47,4 +47,23 @@ class PostsController extends Controller
         
         return view('ranking.index', ['posts' => $posts]);
     }
+    
+    public function search(Request $request)
+    {   
+        $data =[];
+        $posts = Post::where('name', 'like',"%{$request->search}%")
+                ->orWhere('content', 'like',"%{$request->search}%")
+                ->withCount('favorites')
+                ->orderBy('favorites_count', 'desc')
+                ->paginate(20);
+        
+        $search_result = $request->search . 'の検索結果' .$posts->total() . '件';
+        
+        $data = [
+            'posts' => $posts,
+            'search_result' => $search_result,
+            ];
+        
+        return view('ranking.index', $data);
+    } 
 }

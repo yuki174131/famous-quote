@@ -49,5 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('ranking','PostsController@rankingIndex')->name('ranking.index');
     
+    Route::get('posts/search','PostsController@search')->name('posts.search');
+    
 });
 
