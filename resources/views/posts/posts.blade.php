@@ -9,8 +9,9 @@
                 <div>
                     <p>人物：{{ $post->name }}</p>
                 </div>   
-                <div>
-                    <p>名言：{!! nl2br(e($post->content)) !!}</p>
+                <div class="mt-4">
+                    <p class="mb-2">名言：</p>
+                    <p>{!! nl2br(e($post->content)) !!}</p>
                 </div>
                 <div class="row">
                     <div class="ml-3">
