@@ -13,17 +13,17 @@
                     <p class="mb-2">名言：</p>
                     <p>{!! nl2br(e($post->content)) !!}</p>
                 </div>
-                <div class="row">
-                    <div class="ml-3">
+                <div class="bg-light btn-toolbar p-2">
+                    <div class="btn-group ml-2">
                         @include('favorite.favorite_button', ['postId' => $post->id])
                         {{-- <span class="badge badge-secondary">{{ $count_posts_favorites }}</span> --}}
                     </div>
-                    <div class="ml-2">
+                    <div class="btn-group ml-2">
                         @if (Auth::id() == $post->user_id)
-                            {!! link_to_route('category.posts.edit', '編集', ['id' => $post->id], ['class' => 'btn btn-light btn-sm']) !!}
+                            {!! link_to_route('category.posts.edit', '編集', ['id' => $post->id], ['class' => 'btn btn-secondary btn-sm']) !!}
                         @endif
                     </div>
-                    <div class="ml-2">
+                    <div class="btn-group ml-2">
                         @if (Auth::id() == $post->user_id)
                             {!! Form::open(['route' => ['category.posts.destroy', $post->id], 'method' => 'delete']) !!}
                                 {!! Form::submit('削除', ['class' => 'btn btn-danger btn-sm']) !!}
