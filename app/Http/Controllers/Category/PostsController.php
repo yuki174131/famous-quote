@@ -31,7 +31,7 @@ class PostsController extends Controller
         
         $this->validate($request,[
             'name' => 'required|max:191',
-            'content' => 'required|max:191',
+            'content' => 'required|max:500',
         ]);
         
         $request->user()->posts()->create([
