@@ -22,12 +22,4 @@ class Controller extends BaseController
             'count_favorites' => $count_favorites,
         ];
     }
-    
-    public function post_counts($post) {
-        $count_posts_favorites = $post->favorite_user();
-
-        return [
-            'count_posts_favorites' => $count_posts_favorites,
-        ];
-    }
 }

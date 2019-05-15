@@ -16,7 +16,6 @@
                 <div class="bg-light btn-toolbar p-2">
                     <div class="btn-group ml-2">
                         @include('favorite.favorite_button', ['postId' => $post->id])
-                        {{-- <span class="badge badge-secondary">{{ $count_posts_favorites }}</span> --}}
                     </div>
                     <div class="btn-group ml-2">
                         @if (Auth::id() == $post->user_id)

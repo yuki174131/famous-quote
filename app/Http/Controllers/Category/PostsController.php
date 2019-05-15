@@ -15,7 +15,8 @@ class PostsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $category = Category::find($category_id);
-            $posts = Post::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(20);
+            $posts = Post::where('category_id', $category->id)->withCount('favorites')->orderBy('created_at', 'desc')->paginate(20);
+            $favorites_posts = Post::withCount('favorites');
             
             $data = [
                 'posts' => $posts,
