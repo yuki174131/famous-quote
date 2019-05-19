@@ -15,11 +15,12 @@ class PostsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $posts = Post::withCount('favorites')->orderBy('created_at', 'desc')->paginate(20);
-            
+            $user_favorites = $user->favorites()->count();
         }
         $data = [
                 'user' => $user,
                 'posts' => $posts,
+                'user_favorites' => $user_favorites,
             ];
             
         return view('posts.index', $data);
@@ -31,10 +32,12 @@ class PostsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $posts = $user->feed_posts()->withCount('favorites')->orderBy('created_at', 'desc')->paginate(20);
+            $user_favorites = $user->favorites()->count();
             
             $data = [
                 'user' => $user,
                 'posts' => $posts,
+                'user_favorites' => $user_favorites,
             ];
         }
         

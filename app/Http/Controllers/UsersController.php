@@ -14,10 +14,12 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $posts = $user->user_posts()->withCount('favorites')->orderBy('created_at', 'desc')->paginate(20);
+        $user_favorites = $user->favorites()->count();
 
         return view('users.show', [
             'user' => $user,
             'posts' => $posts,
+            'user_favorites' => $user_favorites,
         ]);
     }
     
@@ -40,10 +42,12 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $posts = $user->favorites()->withCount('favorites')->paginate(15);
+        $user_favorites = $user->favorites()->count();
         
         $data = [
             'user' => $user,
             'posts' => $posts,
+            'user_favorites' => $user_favorites,
         ];
         
         $data += $this->counts($user);
