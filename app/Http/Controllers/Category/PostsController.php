@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Post;
 use App\User;
+use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
@@ -26,14 +27,11 @@ class PostsController extends Controller
         return view('categories.show', $data);
     }
     
-    public function store($id,Request $request)
+    public function store($id,PostRequest $request)
     {   
         $category = Category::find($id);
         
-        $this->validate($request,[
-            'name' => 'required|max:191',
-            'content' => 'required|max:500',
-        ]);
+        $validated = $request->validated();
         
         $request->user()->posts()->create([
             'name' => $request->name,
@@ -65,13 +63,9 @@ class PostsController extends Controller
         }
     }
     
-    public function update($post_id, Request $request)
+    public function update($post_id, PostRequest $request)
     {   
-        $form = $this->validate($request,[
-            'name' => 'required|max:191',
-            'content' => 'required|max:191',
-        ]);
-        
+
         // ログインしているユーザー
         $user = $request->user();
         // ログインユーザーの指定されたIDの投稿を取得
