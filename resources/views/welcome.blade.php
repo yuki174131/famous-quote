@@ -13,7 +13,7 @@
                 <div class="mt-3">
                 {!! link_to_route('login', 'ログイン', [], ['class' => 'btn btn-lg btn-primary']) !!}
                 </div>
-                <p class="text-right mt- mb-0"><a  href="#">ゲストログイン</a></p>
+                <p class="text-right mt- mb-0"><a href="{{ route('categories.index') }}">ゲストログイン</a></p>
             </div>
         </div>
         <div class="bg-primary text-white pl-4 pt-2 pb-2">

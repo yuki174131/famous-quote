@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'CategoriesController@index');
+Route::get('/', 'CategoriesController@index')->name('categories.index');
  
  //ユーザー登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
